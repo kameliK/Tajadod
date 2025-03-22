@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شراء المواد الخام</title>
+    <style>
+       
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            direction: rtl; 
+            background-color: #4bae3000; 
+        }
+
+        header {
+            background-color: #e8f3e24a;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #efce4a ;
+        }
+
+        h1 {
+            color: #006400; 
+            font-size: 2em;
+        }
+
+        #filter {
+            margin-bottom: 20px;
+            text-align: right; 
+            font-size: 1.2em;
+        }
+
+
+        select {
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #0e000af2; 
+            border-radius: 5px;
+            background-color: #fff;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        select:focus {
+            border-color: #006400;
+            box-shadow: 0 0 8px rgba(0, 100, 0, 0.5);
+        }
+
+        #product-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+            text-align: center; /* Center text inside the product list */
+        }
+
+       /* البوكس نفسه تبع المنتج   */
+       .product {
+            border: 3px solid #00640086; 
+            background-color: #c1efc11b; 
+            color: #006400; 
+            padding: 20px;
+            width: 280px;
+            text-align: right; 
+            box-sizing: border-box;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-radius: 8px; 
+            text-align: center; /* Center text inside individual product boxes */
+        }
+       /* لما امرر على البوكس */
+            .product:hover {
+            transform: scale(1.05);
+            background-color: #67c4697a; 
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); 
+        }
+      /*العنصار مثل خشب سنديان*/
+            .product h3 {
+            margin: 0;
+            font-size: 1.3em;
+            color: #006c10;
+        }
+
+        .product p {
+            margin: 10px 0;
+        }
+        
+        .product a {
+            color: #006c10;
+            text-decoration: none;
+            background-color: #efce4a;
+            padding: 10px 15px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+/* تبعت اشتر الان */
+        .product a:hover {
+            background-color: #cea009;
+          
+        }
+
+        @media (max-width: 1024px) {
+            .product {
+                width: 45%; 
+            }
+        }
+
+        @media (max-width: 600px) {
+            .product {
+                width: 90%; 
+            }
+        }
+
+        nav {
+            display: flex;
+            justify-content: flex-end; /* Align navigation items to the right */
+            align-items: center;
+            background: linear-gradient(135deg, #489b4c, #28a745, #00A5CF); /* Apply gradient background */
+            padding: 15px;
+            border-bottom: 2px solid #006400;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #006400;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin: 0 15px; /* Add spacing between links */
+            padding: 10px 20px; /* Add padding for better button appearance */
+            background-color: #ececec; /* Add background color */
+            border-radius: 5px; /* Round the corners */
+            transition: color 0.3s, transform 0.3s, background-color 0.3s; /* Smooth hover effect */
+        }
+
+        nav a:hover {
+            color: #cea009; /* Change color on hover */
+            background-color: #ffffff; /* Change background color on hover */
+            transform: scale(1.1); /* Slightly enlarge the link on hover */
+        }
+    </style>
+</head>
+<body>
+    <header> <!-- Fix the incomplete tag -->
+        <nav>
+            <a href="./Home.html">الرئيسية</a>
+        </nav>
+        <h1>شراء المواد الخام</h1>
+        <div id="filter">
+            <label for="material">اختر المادة الخام:</label>
+            <select id="material" onchange="filterProducts()">
+                <option value="all">جميع المواد</option>
+                <option value="wood">خشب</option>
+                <option value="aluminum">ألومنيوم</option>
+                <option value="plastic">بلاستيك</option>
+                <option value="cardboard">كرتون</option>
+            </select>
+        </div>
+    </header>
+
+    <main>
+        <div id="product-list">
+            <!-- المنتجات ستظهر هنا بناءً على الفلترة -->
+        </div>
+    </main>
+
+    <script>
+        const products = {
+            wood: [
+                { name: 'خشب بلوط', price: 5, weight: 10 },
+                { name: 'خشب صنوبر', price: 7, weight: 15 },
+                { name: 'خشب سنديان', price: 3, weight: 5 },
+                { name: 'خشب قشرة', price: 5, weight: 8 },
+                { name: 'خشب شفاف', price:6, weight: 7 },
+                { name: 'خشب مضغوط', price: 10, weight: 20 },
+            ],
+            aluminum: [
+                { name: 'ألمنيوم عالي الجودة', price: 50, weight: 50 },
+                { name: 'ألمنيوم مطروق', price: 40, weight: 30 },
+                { name: 'ألمنيوم مؤكسد', price: 14, weight: 10 },
+                { name: 'ألمنيوم صناعي', price: 20, weight: 25 },
+                { name: 'ألمنيوم رقيق', price: 10, weight: 15 },
+                { name: 'ألمنيوم مزخرف', price: 3, weight: 5 },
+            ],
+            plastic: [
+                { name: 'بلاستيك شفاف', price: 10, weight: 100 },
+                { name: 'بلاستيك قوي', price: 15, weight: 70 },
+                { name: 'بلاستيك مرن', price: 12, weight: 50 },
+                { name: 'بلاستيك معاد تدويره', price: 9, weight: 150 },
+                { name: 'بلاستيك خفيف', price: 9, weight: 30 },
+                { name: 'بلاستيك صلب', price: 13, weight: 60 },
+            ],
+            cardboard: [
+                { name: 'كرتون مضغوط', price: 5, weight: 200 },
+                { name: 'كرتون سميك', price: 8, weight: 100 },
+                { name: 'كرتون معاد تدويره', price: 4, weight: 300 },
+                { name: 'كرتون فارغ', price: 3, weight: 500 },
+                { name: 'كرتون مقاوم', price: 6, weight: 150 },
+                { name: 'كرتون عازل', price: 7, weight: 120 },
+            ],
+        };
+
+        function filterProducts() {
+            const material = document.getElementById('material').value;
+            const productList = document.getElementById('product-list');
+            productList.innerHTML = ''; // تفريغ القائمة القديمة
+
+            let filteredProducts = [];
+            if (material === 'all') {
+                filteredProducts = [].concat(...Object.values(products));
+            } else {
+                filteredProducts = products[material];
+            }
+
+            if (filteredProducts.length === 0) {
+                productList.innerHTML = '<p>لا توجد منتجات لعرضها في هذه الفئة.</p>';
+            } else {
+                filteredProducts.forEach((product, index) => {
+                    const productDiv = document.createElement('div');
+                    productDiv.classList.add('product');
+                    productDiv.innerHTML = `
+                        <h3>${product.name}</h3>
+                        <p>السعر: ${product.price} دينار أردني</p>
+                        <p>الوزن: ${product.weight} كيلوغرام</p>
+                        <a href="payment.html?product=${encodeURIComponent(JSON.stringify(product))}">اشتر الآن</a>
+                    `;
+                    productList.appendChild(productDiv);
+                });
+            }
+        }
+        window.onload = filterProducts;
+    </script>
+</body>
+</html>
+
+

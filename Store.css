@@ -1,0 +1,221 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #e8f5e9; /* Light green background */
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+.header {
+    margin-bottom: 30px;
+    background: linear-gradient(135deg, #2E7D32, #28a745, #00A5CF);
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header h1 {
+    font-size: 36px;
+    margin: 0;
+    background: linear-gradient(90deg, #4caf50, #81c784); /* Brighter green gradient */
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: white; /* Change text color to white */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    font-weight: bold;
+    letter-spacing: 1px;
+    animation: fadeIn 1s ease-in-out;
+    transition: transform 0.3s ease, text-shadow 0.3s ease;
+}
+
+.header h1:hover {
+    transform: scale(1.05);
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+}
+
+.back-button {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #388e3c; /* Darker green */
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #66bb6a; /* Lighter green */
+    transform: scale(1.1); /* Slight zoom effect */
+}
+
+.store {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    max-width: 1200px;
+    margin: auto;
+    padding-bottom: 50px;
+    animation: slideUp 1s ease-in-out;
+}
+
+.item {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    overflow: hidden;
+    background: linear-gradient(145deg, #c8e6c9, #a5d6a7); /* Green gradient */
+    height: 300px; /* Adjusted height for bigger div */
+}
+
+.item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 128, 0, 0.3); /* Green shadow */
+}
+
+.item img {
+    width: 100%;
+    height: 220px; /* Adjusted image size */
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.item h3,
+.item p {
+    margin: 10px 0;
+    color: #333;
+}
+
+.item p {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #f1f8e9; /* Light green */
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 60%;
+    max-width: 500px;
+}
+
+.modal img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.close {
+    float: right;
+    font-size: 25px;
+    cursor: pointer;
+    color: #333;
+}
+
+.close:hover {
+    color: #00b894;
+}
+
+button {
+    background-color: #4caf50; /* Green */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #388e3c; /* Darker green */
+}
+
+.modal-content {
+    width: 50%; /* Adjust the width to make it smaller */
+    max-width: 600px; /* Set a maximum width */
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Adjust the modal image size */
+.modal img {
+    max-width: 50%; /* Reduce the image size to 50% of the modal width */
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.modal h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.modal p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.modal button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal button:hover {
+    background-color: #0056b3;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

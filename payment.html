@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>طريقة الدفع</title>
+    <style>
+      
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #cbf7d700;
+        }
+
+        
+        .container {
+            margin-top:  100px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(3, 109, 35, 0.478);
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+        }
+
+      
+        #product-details {
+            margin-bottom: 30px;
+            text-align: right;
+        }
+
+        #product-details p {
+            font-size: 18px;
+            color: #555;
+        }
+
+       
+        #payment-options {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
+        }
+
+        /* الصندوق تبع اختيار طريقة الدفع */
+        .payment-option {
+            padding: 20px;
+             margin-left: 30px;
+            margin-right: 30px;
+            border: 1px solid #ccc;
+            display: inline-block;
+            width: 45%;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+            border-radius: 8px;
+        }
+        /*خيارات الدفع بس امرر عليه الماوس*/
+        .payment-option:hover {
+            background-color: #67c4697a;
+            transform: scale(1.05);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+      /*لما اختار طريقة الدفع فيزا مثلا البوكس اي رح يطلع */
+        .payment-fields {
+            display: none;
+            text-align: right;
+            margin-top: 20px;
+           
+           
+        }
+
+        .payment-fields label {
+            font-size: 16px;
+            margin-bottom: 10px;
+            display: block;
+            
+        }
+
+        .payment-fields input[type="date"],
+        .payment-fields input[type="text"] {
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+            width: 100%;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .payment-fields input[type="text"]:focus, 
+        .payment-fields input[type="date"]:focus {
+            border-color: #006c10;
+            box-shadow: 0 0 8px rgba(0, 108, 16, 0.5);
+        }
+
+       /*كبسة اتمام الدفع*/
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #efce4a;
+            color: #006c10;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+/*لما امرر على الاتمم الدفع */
+        button:hover {
+            background-color: #efc128;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>طريقة الدفع</h1>
+
+        <!-- بعرضلك المنتج الي انت حددته  -->
+        <div id="product-details">
+            <h2>:المنتج المحدد</h2>
+            <p id="product-name"></p>
+            <p id="product-price"></p>
+            <p id="product-weight"></p>
+        </div>
+
+        <div id="payment-options">
+            <!-- مربع الدفع عند الاستلام -->
+            <div class="payment-option" onclick="selectPaymentMethod('cash')">
+                <h3>الدفع عند الاستلام</h3>
+            </div>
+
+            <!-- مربع الدفعغن طريق  الفيزا -->
+            <div class="payment-option" onclick="selectPaymentMethod('visa')">
+                <h3>الدفع بواسطة فيزا</h3>
+            </div>
+        </div>
+
+        <!-- عرض حقول الدفع عند الاستلام -->
+        <div id="cash-fields" class="payment-fields">
+            <h3>الدفع عند الاستلام</h3>
+            <label for="delivery-date-cash">موعد التسليم:</label>
+            <input type="date" id="delivery-date-cash">
+        </div>
+
+        <!-- عرض حقول الدفع عن طريق الفيزا -->
+        <div id="visa-fields" class="payment-fields">
+            <h3>الدفع بواسطة فيزا</h3>
+            <label for="card-number">رقم البطاقة:</label>
+            <input type="text" id="card-number" placeholder="ادخل رقم البطاقة">
+            <br>
+            <label for="expiration-date">تاريخ الانتهاء:</label>
+            <input type="text" id="expiration-date" placeholder="MM/YY">
+            <br>
+            <label for="cvv">CVV:</label>
+            <input type="text" id="cvv" placeholder="ادخل CVV">
+            <br>
+            <label for="delivery-date-visa">موعد التسليم:</label>
+            <input type="date" id="delivery-date-visa">
+        </div>
+
+        <button onclick="submitPayment()">إتمام الدفع</button>
+    </div>
+
+    <script>
+        // الحصول على المنتج من الرابط
+        const urlParams = new URLSearchParams(window.location.search);
+        const product = JSON.parse(decodeURIComponent(urlParams.get('product')));
+
+        // عرض تفاصيل المنتج الذي تم اختياره
+        document.getElementById('product-name').textContent = `اسم المنتج: ${product.name}`;
+        document.getElementById('product-price').textContent = `السعر: ${product.price} دينار أردني`;
+        document.getElementById('product-weight').textContent = `الوزن: ${product.weight} كيلوغرام`;
+
+        let selectedPaymentMethod = '';
+
+        // تحديد خيار الدفع
+        function selectPaymentMethod(method) {
+            selectedPaymentMethod = method;
+
+            // إخفاء جميع الحقول
+            document.getElementById('cash-fields').style.display = 'none';
+            document.getElementById('visa-fields').style.display = 'none';
+
+            // عرض الحقول المناسبة بناءً على طريقة الدفع المختارة
+            if (method === 'cash') {
+                document.getElementById('cash-fields').style.display = 'block';
+            } else if (method === 'visa') {
+                document.getElementById('visa-fields').style.display = 'block';
+            }
+        }
+
+        // إتمام عملية الدفع
+        function submitPayment() {
+            if (selectedPaymentMethod === 'cash') {
+                const deliveryDate = document.getElementById('delivery-date-cash').value;
+                if (deliveryDate) {
+                    alert('تم تأكيد الدفع عند الاستلام. سيتم إرسال المنتج في التاريخ المحدد.');
+                } else {
+                    alert('يرجى تحديد موعد التسليم.');
+                }
+            } else if (selectedPaymentMethod === 'visa') {
+                const cardNumber = document.getElementById('card-number').value;
+                const expirationDate = document.getElementById('expiration-date').value;
+                const cvv = document.getElementById('cvv').value;
+                const deliveryDate = document.getElementById('delivery-date-visa').value;
+                if (cardNumber && expirationDate && cvv && deliveryDate) {
+                    alert('تم تأكيد الدفع بواسطة فيزا. سيتم معالجة الدفع.');
+                } else {
+                    alert('يرجى تعبئة جميع الحقول المطلوبة لعملية الدفع بواسطة فيزا.');
+                }
+            } else {
+                alert('يرجى اختيار طريقة الدفع أولاً.');
+            }
+        }
+    </script>
+</body>
+</html>
