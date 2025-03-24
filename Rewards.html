@@ -1,50 +1,182 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recycling Discount System</title>
+    <title>نظام مكافآت التدوير</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <link rel="stylesheet" href="./Rewards.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="rewards.css">
 </head>
 <body>
+    <button onclick="window.location.href='Home.html'" class="home-button">
+        <i class="fas fa-home"></i>
+        الصفحة الرئيسية
+    </button>
+    
     <div class="container">
-        <button onclick="window.location.href='Home.html'" class="home-button">العودة إلى الصفحة الرئيسية </button>
-        <h1>Recycling Discount System</h1>
+        <h1>نظام مكافآت إعادة التدوير</h1>
         <div class="cards">
-            <div class="card">
-                <i class="fa fa-recycle"></i>
-                <h2>Earn Points</h2>
-                <p>Recycle materials and earn points that can be redeemed for discounts.</p>
+            <!-- Card 1 -->
+            <div class="card" onclick="showDescription(1)">
+                <div class="eco-badge">جديد!</div>
+                <i class="fas fa-recycle"></i>
+                <h2>كسب النقاط</h2>
+                <p>احصل على نقاط مقابل كل كيلوغرام تقوم بإعادة تدويره...</p>
+                <div class="full-description" id="desc-1">
+                    <h3>كيفية كسب النقاط</h3>
+                    <ul>
+                        <li>1 كجم بلاستيك = 5 نقاط</li>
+                        <li>1 كجم ورق = 3 نقاط</li>
+                        <li>1 كجم زجاج = 4 نقاط</li>
+                        <li>1 كجم معادن = 7 نقاط</li>
+                    </ul>
+                    <p>يمكنك جمع النقاط من خلال مراكز التدوير المعتمدة أو من خلال خدمة الجوال الخاصة بنا.</p>
+                </div>
             </div>
-            <div class="card">
-                <i class="fa fa-gift"></i>
-                <h2>Redeem Discounts</h2>
-                <p>Use your points for discounts on eco-friendly products and services.</p>
+            
+            <!-- Card 2 -->
+            <div class="card" onclick="showDescription(2)">
+                <i class="fas fa-gift"></i>
+                <h2>استبدال المكافآت</h2>
+                <p>اختر من بين مجموعة واسعة من المكافآت...</p>
+                <div class="full-description" id="desc-2">
+                    <h3>خيارات استبدال النقاط</h3>
+                    <ul>
+                        <li>100 نقطة: خصم 10% على منتجات صديقة للبيئة</li>
+                        <li>250 نقطة: اشتراك مجاني لمدة شهر في خدمة النقل الأخضر</li>
+                        <li>500 نقطة: هدية بيئية خاصة من شركائنا</li>
+                        <li>1000 نقطة: مشاركة في سحب على رحلة بيئية تعليمية</li>
+                    </ul>
+                </div>
             </div>
-            <div class="card">
-                <i class="fa fa-users"></i>
-                <h2>Referral Rewards</h2>
-                <p>Invite friends and earn extra points when they join our program.</p>
+            
+            <!-- Card 3 -->
+            <div class="card" onclick="showDescription(3)">
+                <i class="fas fa-users"></i>
+                <h2>مكافآت الإحالة</h2>
+                <p>احصل على نقاط إضافية عند دعوة الأصدقاء...</p>
+                <div class="full-description" id="desc-3">
+                    <h3>كيفية الحصول على مكافآت الإحالة</h3>
+                    <ol>
+                        <li>شارك رابط الإحالة الخاص بك مع الأصدقاء</li>
+                        <li>احصل على 20 نقطة لكل صديق يسجل ويقوم بأول عملية تدوير</li>
+                        <li>احصل على 50 نقطة إضافية عند إحالة 5 أصدقاء</li>
+                        <li>لا يوجد حد أقصى لعدد النقاط التي يمكنك كسبها</li>
+                    </ol>
+                </div>
             </div>
-            <div class="card">
-                <i class="fa fa-chart-line"></i>
-                <h2>Tiered Benefits</h2>
-                <p>Move up in our loyalty program and unlock exclusive rewards.</p>
+            
+            <!-- Card 4 -->
+            <div class="card" onclick="showDescription(4)">
+                <i class="fas fa-trophy"></i>
+                <h2>مستويات الولاء</h2>
+                <p>تقدم في مستويات برنامج الولاء الخاص بنا...</p>
+                <div class="full-description" id="desc-4">
+                    <h3>مستويات البرنامج</h3>
+                    <div class="levels">
+                        <div class="level">
+                            <h4>المبتدئ</h4>
+                            <p>0-500 نقطة: خصم 5% على بعض المنتجات</p>
+                        </div>
+                        <div class="level">
+                            <h4>النشط</h4>
+                            <p>501-1500 نقطة: خصم 10% + هدايا شهرية</p>
+                        </div>
+                        <div class="level">
+                            <h4>المتميز</h4>
+                            <p>1501-3000 نقطة: خصم 15% + دعوات حصرية</p>
+                        </div>
+                        <div class="level">
+                            <h4>السفير</h4>
+                            <p>3000+ نقطة: خصم 20% + مكافآت خاصة</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="card">
-                <i class="fa fa-leaf"></i>
-                <h2>Eco-Friendly Partnerships</h2>
-                <p>Enjoy sustainable discounts with our green business partners.</p>
+            
+            <!-- Card 5 -->
+            <div class="card" onclick="showDescription(5)">
+                <div class="eco-badge">شائع</div>
+                <i class="fas fa-leaf"></i>
+                <h2>شركاء بيئيون</h2>
+                <p>استمتع بخصومات حصرية من شركائنا...</p>
+                <div class="full-description" id="desc-5">
+                    <h3>شركاؤنا في الاستدامة</h3>
+                    <div class="partners">
+                        <div class="partner">
+                            <h4>متجر البيئة الخضراء</h4>
+                            <p>خصم 15% على جميع المنتجات المعاد تدويرها</p>
+                        </div>
+                        <div class="partner">
+                            <h4>مقهى الاستدامة</h4>
+                            <p>كوب مجاني عند إحضار كوبك الخاص</p>
+                        </div>
+                        <div class="partner">
+                            <h4>نقل أخضر</h4>
+                            <p>20% خصم على جميع رحلات النقل الصديقة للبيئة</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="card">
-                <i class="fa fa-phone"></i>
-                <h2>Contact Us</h2>
-                <p>Have questions? Reach out to our support team for assistance.</p>
+            
+            <!-- Card 6 -->
+            <div class="card" onclick="showDescription(6)">
+                <i class="fas fa-chart-line"></i>
+                <h2>تتبع التقدم</h2>
+                <p>تابع تقدمك البيئي وتأثيرك...</p>
+                <div class="full-description" id="desc-6">
+                    <h3>إحصائياتك البيئية</h3>
+                    <div class="stats">
+                        <div class="stat">
+                            <h4>كمية المواد المعاد تدويرها</h4>
+                            <p>25 كجم</p>
+                        </div>
+                        <div class="stat">
+                            <h4>النقاط المكتسبة</h4>
+                            <p>320 نقطة</p>
+                        </div>
+                        <div class="stat">
+                            <h4>التأثير البيئي</h4>
+                            <p>وفرت 50 كجم من انبعاثات الكربون</p>
+                        </div>
+                        <div class="stat">
+                            <h4>مستواك الحالي</h4>
+                            <p>النشط (المرتبة الثانية)</p>
+                        </div>
+                    </div>
+                    <button class="view-more">عرض التفاصيل الكاملة</button>
+                </div>
             </div>
         </div>
     </div>
 
- <script src="./control.js"></script>
+    <!-- Modal Overlay -->
+    <div class="modal-overlay" id="modalOverlay" onclick="hideDescription()"></div>
+
+    <script>
+      function showDescription(cardNumber) {
+    const description = document.getElementById(`desc-${cardNumber}`);
+    const modalOverlay = document.getElementById('modalOverlay');
+    
+    description.classList.add('show');
+    modalOverlay.classList.add('active');
+    document.body.classList.add('modal-open');
+    document.body.style.overflow = 'hidden';
+}
+
+function hideDescription() {
+    const descriptions = document.querySelectorAll('.full-description');
+    const modalOverlay = document.getElementById('modalOverlay');
+    
+    descriptions.forEach(desc => {
+        desc.classList.remove('show');
+    });
+    
+    modalOverlay.classList.remove('active');
+    document.body.classList.remove('modal-open');
+    document.body.style.overflow = 'auto';
+}
+    </script>
 </body>
 </html>
