@@ -514,3 +514,55 @@ h1::after {
         left: 10px;
     }
 }
+.eco-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: var(--accent-color);
+    color: var(--primary-dark);
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    transform: rotate(-15deg);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    animation: badgeWiggle 2s infinite;
+    z-index: 2; /* Ensure it appears above other elements */
+}
+
+/* Adjust card positioning to accommodate badges */
+.card {
+    position: relative; /* This is needed for absolute positioning of badges */
+    /* ... rest of your existing card styles ... */
+    padding-top: 40px; /* Add space at top for badge */
+}
+
+/* For cards without badges */
+.card:not(:has(.eco-badge)) {
+    padding-top: 30px; /* Normal padding for cards without badges */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .eco-badge {
+        top: 8px;
+        right: 8px;
+        font-size: 0.7rem;
+        padding: 4px 8px;
+    }
+    .card {
+        padding-top: 35px;
+    }
+}
+
+@media (max-width: 480px) {
+    .eco-badge {
+        top: 5px;
+        right: 5px;
+        font-size: 0.6rem;
+        padding: 3px 6px;
+    }
+    .card {
+        padding-top: 30px;
+    }
+}
