@@ -60,6 +60,90 @@ nav {
     position: relative;
     display: inline-block;
 }
+/* Electric Green-Blue Lightning Animation (Slower) */
+.nav-links li a[href="Rewards.html"] {
+    position: relative;
+    color: #fff !important;
+    font-weight: bold;
+    padding: 5px 12px;
+    border-radius: 4px;
+    background: rgba(5, 15, 25, 0.95); /* Dark base */
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+    animation: electric-pulse 8s infinite;
+    box-shadow: 
+        inset 0 0 10px rgba(0, 255, 200, 0.2),
+        0 0 15px rgba(0, 100, 255, 0.2);
+    border: 1px solid rgba(0, 200, 255, 0.15);
+    transition: all 0.4s ease;
+    overflow: hidden;
+}
+
+/* Lightning flashes */
+@keyframes electric-pulse {
+    0%, 30%, 60%, 85%, 100% { /* Resting state */
+        background: rgba(5, 15, 25, 0.95);
+        box-shadow: 
+            inset 0 0 10px rgba(0, 255, 200, 0.2),
+            0 0 15px rgba(0, 100, 255, 0.2);
+    }
+    5%, 35% { /* Blue lightning strike */
+        background: rgba(0, 60, 150, 0.7);
+        box-shadow: 
+            inset 0 0 25px rgba(50, 180, 255, 0.9),
+            0 0 35px rgba(0, 120, 255, 0.8);
+    }
+    15%, 65% { /* Green lightning strike */
+        background: rgba(0, 150, 80, 0.7);
+        box-shadow: 
+            inset 0 0 25px rgba(100, 255, 180, 0.9),
+            0 0 35px rgba(0, 255, 150, 0.8);
+    }
+    45% { /* Combined blue-green surge */
+        background: rgba(0, 120, 150, 0.8);
+        box-shadow: 
+            inset 0 0 30px rgba(80, 255, 255, 1),
+            0 0 40px rgba(0, 200, 255, 0.9),
+            0 0 60px rgba(0, 150, 200, 0.6);
+    }
+    75% { /* Quick white-hot flash */
+        background: rgba(180, 220, 255, 0.9);
+        box-shadow: 
+            inset 0 0 35px rgba(255, 255, 255, 1),
+            0 0 45px rgba(200, 240, 255, 1);
+    }
+}
+
+/* Hover effect - more active lightning */
+.nav-links li a[href="Rewards.html"]:hover {
+    animation: electric-pulse 5s infinite;
+    border-color: rgba(0, 255, 200, 0.3);
+    text-shadow: 0 0 10px #fff;
+}
+
+/* Optional: Add electric afterglow */
+.nav-links li a[href="Rewards.html"]::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 3px;
+    background: linear-gradient(
+        135deg,
+        rgba(0, 255, 200, 0) 0%,
+        rgba(0, 255, 200, 0.1) 50%,
+        rgba(0, 200, 255, 0) 100%
+    );
+    opacity: 0;
+    animation: afterglow-flicker 10s infinite;
+}
+
+@keyframes afterglow-flicker {
+    0%, 100% { opacity: 0; }
+    20%, 40%, 60%, 80% { opacity: 0.15; }
+    30%, 50%, 70% { opacity: 0.05; }
+}
 
 .dropdown-content {
     display: none;
