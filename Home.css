@@ -779,33 +779,38 @@ a {
 
 .statistics-counter {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 20px;
-    max-width: 1000px;
-    margin: auto;
+    justify-content: space-between; /* This ensures equal spacing */
+    align-items: stretch; /* Makes all boxes same height */
+    flex-wrap: nowrap; /* Prevents wrapping to new line */
+    max-width: 1200px; /* Increased to accommodate 4 boxes */
+    margin: 0 auto;
+    padding: 0 20px; /* Added side padding */
     opacity: 0;
     transform: translateY(50px);
     animation: fadeInUp 1s ease-out forwards;
+    gap: 20px; /* Consistent gap between boxes */
 }
 
 .single-ststistics-box {
+    flex: 1; /* Each box takes equal width */
+    min-width: 0; /* Allows flex items to shrink properly */
     background: white;
     padding: 30px;
     border-radius: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease-in-out;
-    width: 200px;
     text-align: center;
     cursor: pointer;
     opacity: 0;
     transform: scale(0.9);
     animation: popUp 0.6s ease-in-out forwards 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .single-ststistics-box:hover {
-    transform: scale(1.1);
+    transform: scale(1.05); /* Slightly reduced hover scale */
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
@@ -817,10 +822,11 @@ a {
     justify-content: center;
     align-items: center;
     transition: all 0.3s ease-in-out;
+    margin-bottom: 10px;
 }
 
 .single-ststistics-box:hover .statistics-content {
-    transform: scale(1.2);
+    transform: scale(1.1); /* Slightly reduced hover scale */
     color: #238424;
     text-shadow: 0 0 10px rgba(143, 255, 128, 0.7);
 }
@@ -837,42 +843,40 @@ a {
     font-weight: 600;
     text-transform: uppercase;
     color: #555;
-    margin-top: 10px;
+    margin-top: auto; /* Pushes title to bottom */
 }
 
-.statistics h2 {
-    font-family: "Noto Sans Arabic", sans-serif;
-    font-variation-settings: "wdth" 100;
-    direction: rtl;
-    color: #000;
-    font-weight: 700;
-    z-index: 1;
-}
-.statistics-counter {
-    display: flex;
-    justify-content: space-between; /* Distributes space evenly between items */
-    align-items: center;
-    gap: 20px; /* Consistent gap between boxes */
-    width: 100%;
-    margin: 0 auto;
-    padding: 20px 0;
-    overflow-x: auto; /* Allows horizontal scrolling if needed */
-    scrollbar-width: none; /* Hide scrollbar in Firefox */
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .statistics-counter {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .single-ststistics-box {
+        flex: 0 0 calc(50% - 20px); /* 2 boxes per row */
+        margin-bottom: 20px;
+    }
 }
 
-.statistics-counter::-webkit-scrollbar {
-    display: none; /* Hide scrollbar in Chrome/Safari */
+@media (max-width: 576px) {
+    .single-ststistics-box {
+        flex: 0 0 100%; /* 1 box per row */
+    }
 }
 
-.single-ststistics-box {
-    flex: 1; /* Each box takes equal space */
-    min-width: 200px; /* Minimum width for each box */
-    background: white;
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease-in-out;
-    text-align: center;
+/* Animation keyframes */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes popUp {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 /* Rest of your existing styles... */
@@ -1123,8 +1127,83 @@ a {
     }
 }
 
+#section3 {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.5s ease-out;
+  }
   
-
-
-
-
+  #section3.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Content wrapper styling */
+  .content-wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Scrollable content area */
+  .scrollable-content {
+    max-height: 350px;
+    overflow-y: auto;
+    padding-right: 10px;
+  }
+  
+  /* Custom scrollbar for RTL */
+  .scrollable-content::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .scrollable-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+  
+  .scrollable-content::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+  }
+  
+  /* Chart container styling */
+.chart-container {
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 15px; /* Add padding inside container */
+    height: 100%; /* Take full height of column */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Chart element styling */
+  #piechart_3d {
+    width: 100% !important; 
+    height: 280px !important; /* Fixed height for desktop */
+    min-height: 0; /* Allow it to shrink */
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 992px) {
+    #piechart_3d {
+      height: 250px !important;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .chart-container {
+      margin-top: 20px;
+    }
+    
+    #piechart_3d {
+      height: 220px !important;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    #piechart_3d {
+      height: 180px !important;
+    }
+  }
