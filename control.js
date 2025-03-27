@@ -258,15 +258,15 @@ document.addEventListener("DOMContentLoaded", function() {
                     if (amount >= 5 && amount <= 10) {
                         message += `الألمنيوم: تمت إضافة 20 نقاط لرصيد نقاطك , و سوف تحصل على 20 دنانير عند الاستلام.\n`;
                         totalMoney += 20;
-                        totalPoints += 20;
+                        totalPoints += 15;
                     } else if (amount > 10 && amount <= 30) {
                         message += `الألمنيوم: تمت إضافة 30 نقاط لرصيد نقاطك , و سوف تحصل على 15 دنانير عند الاستلام.\n`;
                         totalMoney += 15;
-                        totalPoints += 30;
+                        totalPoints += 35;
                     } else if (amount > 30 && amount <= 50) {
                         message += `الألمنيوم: تمت إضافة 50 نقاط لرصيد نقاطك , و سوف تحصل على 25 دنانير عند الاستلام.\n`;
                         totalMoney += 25;
-                        totalPoints += 50;
+                        totalPoints += 150;
                     }
                     break;
 
@@ -274,15 +274,15 @@ document.addEventListener("DOMContentLoaded", function() {
                     if (amount >= 5 && amount <= 10) {
                         message += `الكرتون: تمت إضافة 5 نقاط لرصيد نقاطك , و سوف تحصل على 2 دنانير عند الاستلام.\n`;
                         totalMoney += 2;
-                        totalPoints += 5;
+                        totalPoints += 16;
                     } else if (amount > 10 && amount <= 30) {
                         message += `الكرتون: تمت إضافة 10 نقاط لرصيد نقاطك , و سوف تحصل على 5 دنانير عند الاستلام.\n`;
                         totalMoney += 5;
-                        totalPoints += 10;
+                        totalPoints += 40;
                     } else if (amount > 30 && amount <= 50) {
                         message += `الكرتون: تمت إضافة 20 نقاط لرصيد نقاطك , و سوف تحصل على 7 دنانير عند الاستلام.\n`;
                         totalMoney += 7;
-                        totalPoints += 20;
+                        totalPoints += 200;
                     }
                     break;
 
@@ -324,7 +324,7 @@ function openModal(title, description, priceCash, pricePoints, imageUrl) {
     if (modalTitle && modalDescription && modalPrice && modalImage && modal) {
         modalTitle.innerText = title;
         modalDescription.innerText = description;
-        modalPrice.innerText = `السعر: ${priceCash} ريال / ${pricePoints} نقطة`;
+        modalPrice.innerText = `السعر: ${priceCash} دينار / ${pricePoints} نقطة`;
         modalImage.src = imageUrl;
 
         modal.style.display = "flex";
@@ -464,6 +464,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 250);
     });
 });
+
 
 
 

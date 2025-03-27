@@ -21,6 +21,7 @@
 }
 
 body {
+    font-family: Arial, sans-serif;
     background: var(--gradient);
     color: var(--light-text);
     display: flex;
