@@ -473,4 +473,62 @@ button:hover, .btn:hover, input[type="submit"]:hover {
     animation: float 3s ease-in-out infinite;
 }
 /* [Rest of the previous CSS code remains the same] */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: row; /* Keep the row layout */
+        padding: 0 15px; /* Reduce padding */
+    }
+    
+    .nav-links {
+        margin-top: 0; /* Remove top margin */
+        flex-direction: row; /* Keep links in a row */
+        gap: 10px; /* Reduce gap between items */
+    }
+    
+    .nav-links li a {
+        font-size: 14px; /* Smaller font size */
+        padding: 5px 0; /* Reduce padding */
+    }
+    
+    .logo {
+        font-size: 18px; /* Smaller logo */
+        padding: 5px 10px; /* Reduce padding */
+    }
+    
+    header {
+        padding: 60px 15px; /* Reduce header padding */
+    }
+    
+    header h1 {
+        font-size: 1.8rem; /* Smaller heading */
+    }
+    
+    section {
+        padding: 20px; /* Reduce section padding */
+    }
+    
+    /* Keep dropdowns usable on mobile */
+    .dropdown-content {
+        min-width: 180px; /* Slightly narrower dropdown */
+    }
+    
+    .dropdown-content a {
+        font-size: 14px; /* Smaller dropdown text */
+        padding: 10px 15px; /* Reduce dropdown padding */
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-links {
+        gap: 5px; /* Even smaller gap on very small screens */
+    }
+    
+    .nav-links li a {
+        font-size: 12px; /* Very small text */
+    }
+    
+    .logo {
+        font-size: 16px; /* Very small logo */
+    }
+}
 

@@ -516,3 +516,282 @@ document.addEventListener("DOMContentLoaded", function() {
     // Initialize the application
     app.init();
 });
+
+// "شركة" Button
+document.addEventListener("DOMContentLoaded", function() {
+    // Add the company button functionality at the end
+    const companyBtn = document.querySelector('.company-btn');
+    if (companyBtn) {
+        companyBtn.addEventListener('click', function(event) {
+            // First remove the existing form and notes
+            const existingNote = document.querySelector('p');
+            const companyNote = document.getElementById('company-note');
+            const existingForm = document.querySelector('.provider-container');
+            
+            if (existingNote) existingNote.remove();
+            if (companyNote) companyNote.remove(); // This removes the company note
+            if (existingForm) existingForm.remove();
+            
+            // Rest of your existing code...
+            const newNote = document.createElement('p');
+            newNote.textContent = 'ملاحظة: نستقبل المواد التي تزن ما بين 500كغ - طن فقط';
+            document.body.insertBefore(newNote, document.querySelector('.container'));
+      
+ // Create and insert the new form HTML
+            const newFormHTML = `
+            <main class="provider-container mt-5">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="providerEmployeeName" placeholder="إسم الموظف المسؤول" style="border:solid 2px #2E7D32;" required>
+                            <label for="providerOraganzationName">إسم الموظف المسؤول<span class="provider-required">*</span></label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="providerOrganizationName" placeholder="إسم الشركة" style="border:solid 2px #2E7D32;" required>
+                            <label for="providerEmployeeName">إسم الشركة<span class="provider-required">*</span></label>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                
+                <div class="provider-phone d-flex gap-2 align-items-center">
+                    <select id="providerCountryCode" class="form-select">
+                        <option value="+962" data-flag="jo">+962 (Jordan)</option>
+                        <option value="+970" data-flag="ps">+970 (Palestine)</option>
+                        <option value="+971" data-flag="ae">+971 (UAE)</option>
+                        <option value="+961" data-flag="lb">+961 (Lebanon)</option>
+                        <option value="+61" data-flag="au">+61 (Australia)</option>
+                        <option value="+33" data-flag="fr">+33 (France)</option>
+                        <option value="+49" data-flag="de">+49 (Germany)</option>
+                        <option value="+81" data-flag="jp">+81 (Japan)</option>
+                        <option value="+86" data-flag="cn">+86 (China)</option>
+                        <option value="+39" data-flag="it">+39 (Italy)</option>
+                        <option value="+20" data-flag="eg">+20 (Egypt)</option>
+                        <option value="+965" data-flag="kw">+965 (Kuwait)</option>
+                        <option value="+973" data-flag="bh">+973 (Bahrain)</option>
+                    </select>
+                    <div class="custom-dropdown">
+                        <div class="dropdown-btn" id="dropdownBtn">
+                            JO +962 (Jordan)
+                        </div>
+                        <div class="dropdown-content" id="dropdownContent"></div>
+                    </div>
+                
+                    <div class="form-floating flex-grow-1">
+                        <input type="tel" id="providerPhone" class="form-control" placeholder="Phone Number" style="border:solid 2px #2E7D32;" required>
+                        <label for="providerPhone">إدخل رقم الهاتف<span class="provider-required">*</span></label>
+                    </div>
+                </div>
+                <hr>
+                
+                <div class="provider-material">
+                    <h2 class="provider-material-title">اختار الشيئ الذي تريد إعادة تدويره</h2>
+                    <div class="provider-material-box">
+                        <div class="form-check provider-material-item">
+                            <input class="form-check-input" type="checkbox" id="wood" value="wood" style="border:solid 2px #2E7D32;">
+                            <label class="form-check-label" for="wood">خشب</label>
+                            <div class="form-floating">
+                                <input type="text" class="form-control wood-amount" placeholder="Amount" style="border:solid 2px #2E7D32;" required>
+                                <label for="providerAmount"> الكمية(500كغ- طن)</label>
+                            </div>
+                        </div>
+                        <div class="form-check provider-material-item">
+                            <input class="form-check-input" type="checkbox" id="aluminum" value="aluminum" style="border:solid 2px #2E7D32;">
+                            <label class="form-check-label" for="aluminum">المنيوم</label>
+                            <div class="form-floating">
+                                <input type="text" class="form-control aluminum-amount" placeholder="Amount" style="border:solid 2px #2E7D32;" required>
+                                <label for="providerAmount">الكمية(500كغ- طن)</label>
+                            </div>
+                        </div>
+                        <div class="form-check provider-material-item">
+                            <input class="form-check-input" type="checkbox" id="carton" value="carton" style="border:solid 2px #2E7D32;">
+                            <label class="form-check-label" for="carton">كرتون</label>
+                            <div class="form-floating">
+                                <input type="text" class="form-control carton-amount" placeholder="Amount" style="border:solid 2px #2E7D32;" required>
+                                <label for="providerAmount">الكمية(500كغ- طن)</label>
+                            </div>
+                        </div>
+                        <div class="form-check provider-material-item">
+                            <input class="form-check-input" type="checkbox" id="plastic" value="plastic" style="border:solid 2px #2E7D32;">
+                            <label class="form-check-label" for="plastic">بلاستيك</label>
+                            <div class="form-floating">
+                                <input type="text" class="form-control plastic-amount" placeholder="Amount" style="border:solid 2px #2E7D32;" required>
+                                <label for="providerAmount"> الكمية(500كغ- طن)</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+
+                <div class="provider-day-range">
+                    <h2 class="text-center">حدد اليوم</h2>
+                    <div class="d-flex gap-2 align-items-center">
+                        <input type="date" class="form-control" id="providerDay" placeholder="حدد اليوم" style="border:solid 2px #2E7D32;" required>
+                    </div>
+                </div>
+                <hr>
+
+                <div class="provider-time-range">
+                    <h2 class="text-center">تحديد ساعات الإستلام</h2>
+                    <div class="d-flex gap-2 align-items-center">
+                        <input type="time" class="form-control" id="providerTimeFrom" placeholder="من" style="border:solid 2px #2E7D32;" required>
+                        <span>إلى</span>
+                        <input type="time" class="form-control" id="providerTimeTo" placeholder="إلى" style="border:solid 2px #2E7D32;" required>
+                    </div>
+                </div>
+                <hr>
+                
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="providerAddress" placeholder="العنوان" style="border:solid 2px #2E7D32;" required>
+                    <label for="providerAddress">العنوان<span class="provider-required">*</span></label>
+                </div>
+                <hr>
+
+                <div class="form-check">
+                    <div class="d-flex align-items-center">
+                        <label class="form-check-label" for="autoSizingCheck" style="margin-right: 35px;">Remember me</label>
+                        <input class="form-check-input" type="checkbox" id="autoSizingCheck" style="border:solid 2px #2E7D32;">
+                    </div>
+                </div>
+
+                <button type="button" class="provider-confirm-btn mt-3">تأكيد الطلب</button>    
+            </main>
+            `;
+            
+            // Insert the new form after the container div
+            const container = document.querySelector('.container');
+            container.insertAdjacentHTML('afterend', newFormHTML);
+            
+            // Change the button text and color to indicate it can toggle back
+            companyBtn.textContent = 'فرد';
+            companyBtn.style.backgroundColor = '#2E7D32';
+            
+            // Reinitialize all the event listeners for the new form elements
+            initializeFormEvents();
+        });
+    }
+
+    function initializeFormEvents() {
+        // This function would reinitialize all the event listeners
+        // that you have in your original code for the new form elements
+        
+        // For example, reinitialize the dropdown functionality:
+        const selectElement = document.getElementById("providerCountryCode");
+        if (selectElement) {
+            const dropdownBtn = document.getElementById("dropdownBtn");
+            const dropdownContent = document.getElementById("dropdownContent");
+            
+            // Clear existing dropdown content
+            dropdownContent.innerHTML = '';
+            
+            selectElement.querySelectorAll("option").forEach(option => {
+                const flagClass = `flag-${option.getAttribute("data-flag")}`;
+                const optionDiv = document.createElement("div");
+                optionDiv.className = flagClass;
+                optionDiv.textContent = option.textContent;
+                optionDiv.onclick = () => {
+                    selectElement.value = option.value;
+                    dropdownBtn.className = `dropdown-btn ${flagClass}`;
+                    dropdownBtn.textContent = option.textContent;
+                    dropdownContent.style.display = "none";
+                };
+                dropdownContent.appendChild(optionDiv);
+            });
+            
+            dropdownBtn.onclick = () => {
+                dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block";
+            };
+            
+            const firstOption = selectElement.querySelector("option");
+            dropdownBtn.className = `dropdown-btn flag-${firstOption.getAttribute("data-flag")}`;
+            dropdownBtn.textContent = firstOption.textContent;
+        }
+        
+        // Reinitialize material items functionality
+        const materialItems = document.querySelectorAll('.form-check.provider-material-item');
+        materialItems.forEach(item => {
+            const input = item.querySelector('input[type="checkbox"]');
+            const amountInput = item.querySelector('.form-floating');
+
+            if (input && amountInput) {
+                input.addEventListener('click', () => {
+                    if (input.checked) {
+                        amountInput.style.display = 'block';
+                    } else {
+                        amountInput.style.display = 'none';
+                    }
+                });
+
+                amountInput.style.display = 'none';
+            }
+        });
+        
+        // Reinitialize confirm button functionality
+        const confirmBtn = document.querySelector('.provider-confirm-btn');
+        if (confirmBtn) {
+            confirmBtn.addEventListener('click', function() {
+                let message = '';
+                let totalAmount = 0;
+                let totalMoney = 0;
+                let totalPoints = 0;
+
+                const selectedMaterials = document.querySelectorAll('input[type="checkbox"]:checked');
+                if (selectedMaterials.length === 0) {
+                    alert("الرجاء اختيار مادة.");
+                    return;
+                }
+
+                for (const selectedMaterial of selectedMaterials) {
+                    const materialId = selectedMaterial.id;
+                    const amountInput = document.querySelector(`.${materialId}-amount`);
+                    const amount = parseFloat(amountInput.value);
+
+                    if (isNaN(amount) || amount < 500 || amount > 1000) {
+                        alert(`الرجاء إدخال كمية صحيحة بين 500 و 1000 كيلوغرام للمادة: ${materialId}`);
+                        return;
+                    }
+
+                    totalAmount += amount;
+
+                    // Adjust these values for company requirements (500kg-1ton)
+                    switch (materialId) {
+                        case 'wood':
+                            message += `الخشب: تمت إضافة 100 نقطة لرصيد نقاطك , و سوف تحصل على 50 دينار عند الاستلام.\n`;
+                            totalMoney += 50;
+                            totalPoints += 100;
+                            break;
+                        case 'aluminum':
+                            message += `الألمنيوم: تمت إضافة 200 نقطة لرصيد نقاطك , و سوف تحصل على 100 دينار عند الاستلام.\n`;
+                            totalMoney += 100;
+                            totalPoints += 200;
+                            break;
+                        case 'carton':
+                            message += `الكرتون: تمت إضافة 50 نقطة لرصيد نقاطك , و سوف تحصل على 20 دينار عند الاستلام.\n`;
+                            totalMoney += 20;
+                            totalPoints += 50;
+                            break;
+                        case 'plastic':
+                            message += `البلاستيك: تمت إضافة 50 نقطة لرصيد نقاطك , و سوف تحصل على 20 دينار عند الاستلام.\n`;
+                            totalMoney += 20;
+                            totalPoints += 50;
+                            break;
+                        default:
+                            alert(`مادة غير معروفة: ${materialId}`);
+                            return;
+                    }
+                }
+
+                alert(`الكمية الإجمالية: ${totalAmount} كغ\nالمبلغ الإجمالي: ${totalMoney} دنانير\nالنقاط الإجمالية: ${totalPoints}\n${message}`);
+                alert("تم تأكيد الطلب بنجاح!");
+            });
+      
+            companyBtn.onclick = function() {
+                location.reload(); // Simplest way to return to original state
+            };  }
+    }
+});
+
+
+   

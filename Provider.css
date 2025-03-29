@@ -633,3 +633,26 @@ label {
     text-align: center; /* Center the text inside the input */
     padding-top: 5px; /* Move the text slightly up */
 }
+
+/* "شركة" button */
+.company-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    animation: fadeIn 1.5s ease-in-out;
+    margin-left: auto;
+}
+
+.company-btn:hover {
+    background-color: #1B5E20;
+}
